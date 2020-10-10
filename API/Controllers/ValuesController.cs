@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace API.Controllers
+namespace UserStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly DataContext _context;
-        public ValuesController(DataContext context)
+        private readonly UserStoreDataContext _context;
+        public ValuesController(UserStoreDataContext context)
         {
             _context = context;
         }

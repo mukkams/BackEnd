@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(UserStoreDataContext))]
+    [Migration("20201010135253_AddedClient")]
+    partial class AddedClient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,6 +51,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<Guid?>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Postcode")
                         .IsRequired()
                         .HasColumnType("varchar(25)")
@@ -64,9 +69,32 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("Domain.Models.UserStore.Client", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("WebSite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Client");
                 });
 
             modelBuilder.Entity("Domain.Models.UserStore.Email", b =>
@@ -76,7 +104,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -114,6 +144,10 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Models.UserStore.Address", b =>
                 {
+                    b.HasOne("Domain.Models.UserStore.Client", null)
+                        .WithMany("Addresses")
+                        .HasForeignKey("ClientId");
+
                     b.HasOne("Domain.Models.UserStore.User", null)
                         .WithMany("Addresses")
                         .HasForeignKey("UserId");

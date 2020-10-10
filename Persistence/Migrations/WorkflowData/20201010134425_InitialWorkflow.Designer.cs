@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
-namespace Persistence.Migrations
+namespace Persistence.Migrations.WorkflowData
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20201004131241_IncValidations")]
-    partial class IncValidations
+    [DbContext(typeof(WorkflowDataContext))]
+    [Migration("20201010134425_InitialWorkflow")]
+    partial class InitialWorkflow
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -78,7 +78,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");

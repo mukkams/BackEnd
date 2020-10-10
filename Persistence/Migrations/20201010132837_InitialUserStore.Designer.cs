@@ -9,9 +9,9 @@ using Persistence;
 
 namespace Persistence.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20201004115330_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(UserStoreDataContext))]
+    [Migration("20201010132837_InitialUserStore")]
+    partial class InitialUserStore
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,14 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address1")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Address3")
                         .HasColumnType("nvarchar(max)");
@@ -43,13 +47,19 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Postcode")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(25)")
+                        .HasMaxLength(25);
 
                     b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -68,7 +78,9 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -90,10 +102,14 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FristName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.HasKey("Id");
 

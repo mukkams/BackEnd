@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialUserStore : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    FristName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    FristName = table.Column<string>(maxLength: 255, nullable: false),
+                    LastName = table.Column<string>(maxLength: 255, nullable: false),
                     Age = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -26,14 +26,14 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Address1 = table.Column<string>(nullable: true),
-                    Address2 = table.Column<string>(nullable: true),
+                    Address1 = table.Column<string>(maxLength: 255, nullable: false),
+                    Address2 = table.Column<string>(maxLength: 255, nullable: false),
                     Address3 = table.Column<string>(nullable: true),
                     Address4 = table.Column<string>(nullable: true),
                     Address5 = table.Column<string>(nullable: true),
-                    City = table.Column<string>(nullable: true),
-                    State = table.Column<string>(nullable: true),
-                    Postcode = table.Column<string>(nullable: true),
+                    City = table.Column<string>(maxLength: 100, nullable: false),
+                    State = table.Column<string>(maxLength: 100, nullable: false),
+                    Postcode = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
                     UserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -52,7 +52,7 @@ namespace Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    EmailAddress = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(maxLength: 255, nullable: false),
                     UserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

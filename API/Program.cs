@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Persistence;
 
-namespace API
+namespace UserStoreAPI
 {
     public class Program
     {
@@ -24,7 +24,7 @@ namespace API
                 try 
                 
                 {
-                    var context = services.GetRequiredService<DataContext>();
+                    var context = services.GetRequiredService<UserStoreDataContext>();
                     //context.Database.Migrate();
                 }
                 catch (Exception ex)
