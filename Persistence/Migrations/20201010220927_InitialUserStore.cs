@@ -8,6 +8,19 @@ namespace Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Client",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CompanyName = table.Column<string>(maxLength: 255, nullable: false),
+                    WebSite = table.Column<string>(maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Client", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -34,11 +47,18 @@ namespace Persistence.Migrations
                     City = table.Column<string>(maxLength: 100, nullable: false),
                     State = table.Column<string>(maxLength: 100, nullable: false),
                     Postcode = table.Column<string>(type: "varchar(25)", maxLength: 25, nullable: false),
+                    ClientId = table.Column<Guid>(nullable: true),
                     UserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Address", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Address_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Address_User_UserId",
                         column: x => x.UserId,
@@ -67,6 +87,11 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Address_ClientId",
+                table: "Address",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",
                 table: "Address",
                 column: "UserId");
@@ -84,6 +109,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Email");
+
+            migrationBuilder.DropTable(
+                name: "Client");
 
             migrationBuilder.DropTable(
                 name: "User");

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Domain.Models.UserStore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -21,7 +22,7 @@ namespace UserStoreAPI.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Value>>> Get()
+        public async Task<ActionResult<IEnumerable<User>>> Get()
         {
             var values = await _context.User.Include( a => a.Addresses).ToListAsync();
             return Ok(values);
@@ -29,7 +30,7 @@ namespace UserStoreAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Value>> Get(int id)
+        public async Task<ActionResult<User>> Get(int id)
         {
             var value = await _context.User.FindAsync(id);
             return Ok(value);

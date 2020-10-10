@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(UserStoreDataContext))]
-    [Migration("20201010135253_AddedClient")]
-    partial class AddedClient
+    [Migration("20201010220927_InitialUserStore")]
+    partial class InitialUserStore
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
