@@ -13,11 +13,11 @@ namespace Persistence
         
         public DbSet<User> User { get; set; }
 
-        public DbSet<Address> Address { get; set; }
+        //public DbSet<Address> Address { get; set; }
 
-        public DbSet<Email> Email { get; set; }
+        //public DbSet<Email> Email { get; set; }
 
-        public DbSet<Client> Client { get; set; }
+        //public DbSet<Client> Client { get; set; }
 
     }
 }

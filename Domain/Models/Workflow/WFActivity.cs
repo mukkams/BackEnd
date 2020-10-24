@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models.Workflow
 {
@@ -15,6 +17,8 @@ namespace Domain.Models.Workflow
             WfworkItem = new HashSet<WFWorkItem>();
         }
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string ExternalId { get; set; }
         public string AltExternalId { get; set; }

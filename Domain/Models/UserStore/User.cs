@@ -13,17 +13,17 @@ namespace Domain.Models.UserStore
 
         [Required]
         [MaxLength(255)]
-        public string FristName { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         [MaxLength(255)]
         public string LastName { get; set; }
 
-        public int Age { get; set; }
+        //public int Age { get; set; }
         
-        public List<Address> Addresses { get; set; } = new List<Address>();
+        //public List<Address> Addresses { get; set; } = new List<Address>();
 
-        public List<Email> EmailAddress { get; set; } = new List<Email>();
+        //public List<Email> EmailAddress { get; set; } = new List<Email>();
 
 
     }

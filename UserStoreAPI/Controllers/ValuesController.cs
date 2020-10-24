@@ -24,7 +24,7 @@ namespace UserStoreAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> Get()
         {
-            var values = await _context.User.Include( a => a.Addresses).ToListAsync();
+            var values = await _context.User.ToListAsync();
             return Ok(values);
         }
 
