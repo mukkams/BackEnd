@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  userstoreapi:
+    image: userstoreapi:latest
+    build:
+      context: .
+      dockerfile: UserStoreAPI/Dockerfile
+    ports:
+      - 5000:80
