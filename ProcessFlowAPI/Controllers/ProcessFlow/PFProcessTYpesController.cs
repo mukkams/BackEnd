@@ -26,7 +26,7 @@ namespace ProcessFlowAPI.Controllers.ProcessFlow
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PFProcessType>>> Get()
         {
-            var values = await _context.PFProcessType.ToListAsync();
+            var values = await _context.PFProcessTypes.ToListAsync();
             return Ok(values);
         }
 
@@ -34,7 +34,7 @@ namespace ProcessFlowAPI.Controllers.ProcessFlow
         [HttpGet("{id}")]
         public async Task<ActionResult<PFProcessType>> Get(int id)
         {
-            var value = await _context.PFProcessType.FindAsync(id);
+            var value = await _context.PFProcessTypes.FindAsync(id);
             return Ok(value);
         }
 

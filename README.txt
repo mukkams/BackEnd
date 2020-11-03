@@ -17,6 +17,8 @@ dotnet ef migrations remove --context UserStoreDataContext --project="C:\GitHubP
 
 dotnet ef migrations add InitialProcessFlow --context ProcessFlowDataContext --project="C:\GitHubProjects\BackEnd\Persistence\Persistence.csproj" --startup-project="C:\GitHubProjects\BackEnd\ProcessFlowAPI\ProcessFlowAPI.csproj" 
 
+dotnet watch run
+
 dotnet ef database update --context ProcessFlowDataContext --project="C:\GitHubProjects\BackEnd\Persistence\Persistence.csproj" --startup-project="C:\GitHubProjects\BackEnd\ProcessFlowAPI\ProcessFlowAPI.csproj"
 
 

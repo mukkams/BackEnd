@@ -69,7 +69,7 @@ namespace Persistence.Migrations.ProcessFlowData
 
                     b.HasKey("Id");
 
-                    b.ToTable("PFActivity");
+                    b.ToTable("PFActivities");
                 });
 
             modelBuilder.Entity("Domain.Models.ProcessFlow.PFProcessType", b =>
@@ -113,7 +113,7 @@ namespace Persistence.Migrations.ProcessFlowData
 
                     b.HasKey("Id");
 
-                    b.ToTable("PFProcessType");
+                    b.ToTable("PFProcessTypes");
                 });
 #pragma warning restore 612, 618
         }
